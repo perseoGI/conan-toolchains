@@ -54,3 +54,6 @@ class CcacheConan(ConanFile):
         self.cpp_info.includedirs = []
         if self.conf.get("user.ccache:auto_inject", default=True, check_type=bool):
             self.conf_info.append("tools.cmake.cmaketoolchain:user_toolchain", os.path.join(self.package_folder, AUTOIJECT_CMAKE))
+
+        self.buildenv_info.define("CCACHE_NOHASHDIR", "1")
+        self.buildenv_info.define("CCACHE_BASEDIR", str(Path.home()))

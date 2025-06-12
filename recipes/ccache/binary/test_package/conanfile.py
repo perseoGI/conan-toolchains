@@ -12,6 +12,14 @@ class TestPackageConan(ConanFile):
     def build_requirements(self):
         self.tool_requires(self.tested_reference_str)
 
+    def layout(self):
+        cmake_layout(self)
+
+    def build(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.build()
+
     def test(self):
         generated_file = os.path.join(self.dependencies.build[self.tested_reference_str].package_folder, "ccache-autoinject.cmake")
         if not os.path.exists(generated_file):
@@ -22,11 +30,3 @@ class TestPackageConan(ConanFile):
 
         if can_run(self):
             self.run("ccache --version", env="conanbuild")
-
-    def layout(self):
-        cmake_layout(self)
-
-    def build(self):
-        cmake = CMake(self)
-        cmake.configure()
-        cmake.build()
