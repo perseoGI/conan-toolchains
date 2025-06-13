@@ -6,6 +6,9 @@ conan.lock
 conanbuildinfo.cmake
 conanbuildinfo.txt
 conaninfo.txt
+conanbuild*
+conanrun*
+deactivate_conan*
 graph_info.json
 build/
 .conanrunner/
