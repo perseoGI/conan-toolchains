@@ -1,0 +1,15 @@
+[settings]
+build_type=Release
+compiler=emcc
+compiler.cppstd=17  
+compiler.libcxx=libc++
+compiler.version=4.0.10
+os=Emscripten
+
+[tool_requires]
+emsdk/4.0.10
+ninja/[*]
+
+[conf]
+# Set Ninja as default generator as it is faster and will sove issues on Windows
+tools.cmake.cmaketoolchain:generator=Ninja
