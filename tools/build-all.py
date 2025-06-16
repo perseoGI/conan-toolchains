@@ -1,33 +1,40 @@
-#!/usr/bin/env python3
 import pathlib
 import subprocess
-import sys
+import yaml
 
-try:
-    import yaml
-except ImportError:
-    sys.exit("PyYAML is not installed")
 
-recipes_root = pathlib.Path("recipes")
-if not recipes_root.is_dir():
-    sys.exit(0)
+def load_versions(recipe_dir: pathlib.Path) -> dict[str, dict]:
+    """
+    Return the mapping {version -> info} defined in `config.yml`.
+    If the file does not exist, return an empty dict.
+    """
+    cfg = recipe_dir / "config.yml"
+    if not cfg.is_file():
+        return {}
+    data = yaml.safe_load(cfg.read_text()) or {}
+    return data.get("versions", {})
 
-for recipe_dir in sorted(recipes_root.iterdir()):
-    cfg_file = recipe_dir / "config.yml"
-    if not cfg_file.is_file():
-        continue
 
-    data = yaml.safe_load(cfg_file.read_text()) or {}
-    for version in data.get("versions", {}):
-        subprocess.run(
-            [
-                "conan",
-                "create",
-                str(recipe_dir),
-                "--version",
-                version,
-                "--build",
-                "missing",
-            ],
-            check=True,
-        )
+for recipe_dir in sorted(pathlib.Path("recipes").iterdir()):
+    versions = load_versions(recipe_dir)
+    for version, info in versions.items():
+        folder = info.get("folder", ".")
+        recipe_path = recipe_dir / folder
+        conanfile = recipe_path / "conanfile.py"
+        print(f"::group::{recipe_dir.name}/{version}")
+        try:
+            subprocess.run(
+                [
+                    "conan",
+                    "create",
+                    str(recipe_path),
+                    "--version",
+                    version,
+                    "--build",
+                    "missing",
+                    "--build-require",
+                ],
+                check=True,
+            )
+        finally:
+            print("::endgroup::")
