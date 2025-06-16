@@ -9,9 +9,14 @@ with flexible maintenance scopes.
 
 ## 🌟 Why a separate repo?
 
-- **Different cadence**: Toolchains evolve separately from libraries (e.g., new compiler versions, SDK upgrades, experimental features).
-- **Greater flexibility**: Easier to test, modify, or share alternative toolchain recipes without touching Conan Center.
-- **Isolation from libraries**: Keeps toolchains out of library dependencies, avoiding unintended conflicts.
+A **centralized** toolchains repository provides a dedicated home for *SDKs*,
+compilers, cross-compilers, and experimental toolchains all in one place. It's
+a great fit for a wide range of users: beginners can easily install a toolchain
+alongside Conan and quickly cross-compile a project, while advanced users can
+integrate it into their workflow by adding it as a local recipe index and
+tailoring recipes as needed. It also supports bleeding-edge or niche toolchains
+that don't belong in the main index, offering maximum flexibility and
+control.
 
 ---
 
