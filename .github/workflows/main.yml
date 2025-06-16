@@ -34,4 +34,6 @@ jobs:
             ${{ runner.os }}-conan2-
 
       - name: Build and test recipes
-        run: python tools/build-all.py
+        run: |
+          conan profile detect
+          python tools/build-all.py
