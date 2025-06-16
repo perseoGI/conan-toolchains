@@ -8,7 +8,6 @@ os=Emscripten
 arch=armv8
 
 [tool_requires]
-emsdk/4.0.10
 ninja/[*]
 
 [conf]

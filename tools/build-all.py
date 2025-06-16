@@ -2,39 +2,40 @@ import pathlib
 import subprocess
 import yaml
 
+RECIPES = pathlib.Path("recipes")
+PROFILES = pathlib.Path("profiles")
 
-def load_versions(recipe_dir: pathlib.Path) -> dict[str, dict]:
-    """
-    Return the mapping {version -> info} defined in `config.yml`.
-    If the file does not exist, return an empty dict.
-    """
+
+def load_versions(recipe_dir: pathlib.Path) -> dict:
     cfg = recipe_dir / "config.yml"
     if not cfg.is_file():
         return {}
-    data = yaml.safe_load(cfg.read_text()) or {}
-    return data.get("versions", {})
+    return yaml.safe_load(cfg.read_text() or "").get("versions", {})
 
 
-for recipe_dir in sorted(pathlib.Path("recipes").iterdir()):
+for recipe_dir in sorted(RECIPES.iterdir()):
     versions = load_versions(recipe_dir)
+    profile = PROFILES / recipe_dir.name
+
     for version, info in versions.items():
-        folder = info.get("folder", ".")
-        recipe_path = recipe_dir / folder
-        conanfile = recipe_path / "conanfile.py"
+        recipe_path = recipe_dir / info.get("folder", ".")
+        cmd = [
+            "conan",
+            "create",
+            str(recipe_path),
+            "--version",
+            version,
+            "--build",
+            "missing",
+            "--build-test",
+            f"{recipe_dir}/*",
+            "--build-require",
+            "-pr:h",
+            f"{profile}-base",
+        ]
         print(f"::group::{recipe_dir.name}/{version}")
         try:
-            subprocess.run(
-                [
-                    "conan",
-                    "create",
-                    str(recipe_path),
-                    "--version",
-                    version,
-                    "--build",
-                    "missing",
-                    "--build-require",
-                ],
-                check=True,
-            )
+            print(f"executing: {' '.join(cmd)}")
+            subprocess.run(cmd, check=True)
         finally:
             print("::endgroup::")
