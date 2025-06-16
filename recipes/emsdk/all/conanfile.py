@@ -85,10 +85,10 @@ class EmSDKConan(ConanFile):
     def package(self):
         copy(self, "LICENSE", src=self.source_folder, dst=os.path.join(self.package_folder, "licenses"))
         copy(self, "*", src=self.source_folder, dst=os.path.join(self.package_folder, "bin"))
-        if not cross_building(self):
-            self.run("embuilder build MINIMAL", env=["conanemsdk", "conanrun"])  # force cache population
-            # Avoid cache failures in case this package is uploaded as paths in sanity.txt are absolute
-            os.remove(os.path.join(self._em_cache, "sanity.txt"))
+        # if not cross_building(self):
+        #     self.run("embuilder build MINIMAL", env=["conanemsdk", "conanrun"])  # force cache population
+        #     # Avoid cache failures in case this package is uploaded as paths in sanity.txt are absolute
+        #     os.remove(os.path.join(self._em_cache, "sanity.txt"))
 
     def _define_tool_var(self, value):
         suffix = ".bat" if self.settings.os == "Windows" else ""

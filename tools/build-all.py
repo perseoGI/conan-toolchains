@@ -5,7 +5,6 @@ import subprocess
 import yaml
 
 RECIPES = pathlib.Path("recipes")
-PROFILES = pathlib.Path("profiles")
 
 
 def load_versions(recipe_dir: pathlib.Path) -> dict:
@@ -17,7 +16,6 @@ def load_versions(recipe_dir: pathlib.Path) -> dict:
 
 for recipe_dir in sorted(RECIPES.iterdir()):
     versions = load_versions(recipe_dir)
-    profile = PROFILES / recipe_dir.name
 
     for version, info in versions.items():
         recipe_path = recipe_dir / info.get("folder", ".")
@@ -40,7 +38,9 @@ for recipe_dir in sorted(RECIPES.iterdir()):
             f"{recipe_name}/*",
             "--build-require",
             "-pr:h",
-            f"{profile}-base",
+            str(recipe_path / "test_package" / "profile"),
+            "-c",
+            "tools.build.cross_building:can_run=True",
         ]
 
         print(f"::group::{recipe_dir.name}/{version}")
