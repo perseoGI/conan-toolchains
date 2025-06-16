@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import json
 import pathlib
 import subprocess
 import yaml
@@ -19,6 +21,13 @@ for recipe_dir in sorted(RECIPES.iterdir()):
 
     for version, info in versions.items():
         recipe_path = recipe_dir / info.get("folder", ".")
+
+        inspect_json = subprocess.check_output(
+            ["conan", "inspect", str(recipe_path / "conanfile.py"), "--format=json"],
+            text=True,
+        )
+        recipe_name = json.loads(inspect_json)["name"]
+
         cmd = [
             "conan",
             "create",
@@ -28,14 +37,15 @@ for recipe_dir in sorted(RECIPES.iterdir()):
             "--build",
             "missing",
             "--build-test",
-            f"{recipe_dir}/*",
+            f"{recipe_name}/*",
             "--build-require",
             "-pr:h",
             f"{profile}-base",
         ]
+
         print(f"::group::{recipe_dir.name}/{version}")
         try:
-            print(f"executing: {' '.join(cmd)}")
+            print("executing:", " ".join(cmd))
             subprocess.run(cmd, check=True)
         finally:
             print("::endgroup::")
