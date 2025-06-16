@@ -1,9 +1,9 @@
 # 🛠️ conan-toolchains
 
-This repository hosts **standalone Conan recipes** for toolchains and
-executables—managed separately from Conan Center Index. It includes compiler
-toolchain recipes (e.g., Emscripten SDK, embedded compilers, cross‑compilers)
-with independent release cycles and flexible maintenance scopes.
+This repository contains Conan recipes for toolchains and command line
+utilities, for example the Emscripten SDK or other compilers. These recipes are
+maintained independently of [Conan Center Index](https://github.com/conan-io/conan-center-index)
+with flexible maintenance scopes.
 
 ---
 
@@ -20,14 +20,15 @@ with independent release cycles and flexible maintenance scopes.
 
 ### Setup `conan-toolchains` as a [local recipe index](https://docs.conan.io/2/devops/devops_local_recipes_index.html#devops-local-recipes-index) repository
 
+Before adding `conan-toolchains` ensure [conan](https://github.com/conan-io/conan) is installed and available in your path.
+Check conan [downloads](https://conan.io/downloads) page.
+
 ```sh
 git clone https://github.com/conan-io/conan-toolchains.git
 conan remote add conan-toolchains ./conan-toolchains
 ```
 
-### Setup `conan-toolchains` as a remote
-
-This repository is under development now so there is currently no CI nor artifactory configured.
+This repository is still under active development, and no Conan remote with pre-built binaries is available yet.
 
 
 ## Contributing
