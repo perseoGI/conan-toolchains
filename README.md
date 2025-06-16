@@ -26,7 +26,7 @@ control.
 ### Setup `conan-toolchains` as a [local recipe index](https://docs.conan.io/2/devops/devops_local_recipes_index.html#devops-local-recipes-index) repository
 
 Before adding `conan-toolchains` ensure [conan](https://github.com/conan-io/conan) is installed and available in your path.
-Check conan [downloads](https://conan.io/downloads) page.
+Check conan [downloads](https://docs.conan.io/2/installation.html) page.
 
 ```sh
 git clone https://github.com/conan-io/conan-toolchains.git
@@ -45,6 +45,7 @@ and install the required development dependencies.
 ```
 git clone git@github.com:conan-io/conan-toolchains.git
 cd conan-toolchains
+# Recommended: Setup your virtual environment before installing dependencies
 pip install pre-commit
 ```
 
