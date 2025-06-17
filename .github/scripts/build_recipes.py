@@ -1,25 +1,33 @@
 #!/usr/bin/env python3
 import os
 import json
-import pathlib
+from pathlib import Path
 import subprocess
 import yaml
-
-RECIPES = pathlib.Path("recipes")
-
-BUILD_RECIPES = os.getenv("BUILD_RECIPES")
-print(BUILD_RECIPES)
-print(type(BUILD_RECIPES))
+from collections import defaultdict
 
 
-def load_versions(recipe_dir: pathlib.Path) -> dict:
+def get_updated_recipes():
+    updated_paths = os.getenv("BUILD_RECIPES", "").split(" ")
+    recipe_files = defaultdict(set)
+    for path in updated_paths:
+        parts = Path(path).parts
+        if len(parts) >= 2 and parts[0] == "recipes":
+            recipe_name = parts[1]
+            file = "/".join(parts[2:])
+            recipe_files[recipe_name].add(file)
+    return set(recipe_files.keys())
+
+
+def load_versions(recipe_dir: Path) -> dict:
     cfg = recipe_dir / "config.yml"
     if not cfg.is_file():
         return {}
     return yaml.safe_load(cfg.read_text() or "").get("versions", {})
 
 
-for recipe_dir in sorted(RECIPES.iterdir()):
+for recipe_name in get_updated_recipes():
+    recipe_dir = Path("recipes") / recipe_name
     versions = load_versions(recipe_dir)
 
     for version, info in versions.items():

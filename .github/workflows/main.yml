@@ -48,7 +48,4 @@ jobs:
         run: |
           conan profile detect
           conan config install conan_config
-          for recipe in ${BUILD_RECIPES}; do
-            echo "$recipe was changed"
-          done
-          python tools/build-all.py
+          python .github/scripts/build_recipes.py
