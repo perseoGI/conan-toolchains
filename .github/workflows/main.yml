@@ -33,8 +33,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-conan2-
 
+      - name: Get changed recipes
+        id: changed-recipes
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
+        with:
+          files: |
+            recipes/**
+          files_ignore: recipes/*.{md,txt}
+
       - name: Build and test recipes
+        if: steps.changed-recipes.outputs.any_changed == 'true'
+        env:
+          BUILD_RECIPES: ${{ steps.changed-recipes.outputs.all_changed_files }}
         run: |
           conan profile detect
           conan config install conan_config
+          for recipe in ${BUILD_RECIPES}; do
+            echo "$recipe was changed"
+          done
           python tools/build-all.py

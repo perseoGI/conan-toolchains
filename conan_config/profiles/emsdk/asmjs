@@ -1,10 +1,7 @@
-include(./base)
+include(./.emsdk_base)
 
 [settings]
 arch=asm.js
-
-[tool_requires]
-emsdk/[*]
 
 [conf]
 tools.build:exelinkflags+=['-sMAXIMUM_MEMORY=2GB', '-sINITIAL_MEMORY=64MB']

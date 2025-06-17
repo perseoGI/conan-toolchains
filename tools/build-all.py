@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
+import os
 import json
 import pathlib
 import subprocess
 import yaml
 
 RECIPES = pathlib.Path("recipes")
+
+BUILD_RECIPES = os.getenv("BUILD_RECIPES")
+print(BUILD_RECIPES)
+print(type(BUILD_RECIPES))
 
 
 def load_versions(recipe_dir: pathlib.Path) -> dict:
@@ -38,7 +43,7 @@ for recipe_dir in sorted(RECIPES.iterdir()):
             f"{recipe_name}/*",
             "--build-require",
             "-pr:h",
-            str(recipe_path / "test_package" / "profile"),
+            str(recipe_path / ".ci_profile"),
             "-c",
             "tools.build.cross_building:can_run=True",
         ]

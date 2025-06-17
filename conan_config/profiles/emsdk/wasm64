@@ -1,10 +1,7 @@
-include(./base)
+include(./.emsdk_base)
 
 [settings]
 arch=wasm64
-
-[tool_requires]
-emsdk/[*]
 
 [conf]
 # In this early stage of wasm64, ALLOW_MEMORY_GROWTH is not having effect. Also it may not be the most efficient solution.
