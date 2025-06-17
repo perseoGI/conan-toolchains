@@ -5,7 +5,6 @@ utilities, for example the Emscripten SDK or other compilers. These recipes are
 maintained independently of [Conan Center Index](https://github.com/conan-io/conan-center-index)
 with flexible maintenance scopes.
 
----
 
 ## 🌟 Why a separate repo?
 
@@ -17,8 +16,6 @@ integrate it into their workflow by adding it as a local recipe index and
 tailoring recipes as needed. It also supports bleeding-edge or niche toolchains
 that don't belong in the main index, offering maximum flexibility and
 control.
-
----
 
 ## 🚀 Getting started
 
@@ -40,19 +37,21 @@ This repository is still under active development, and no Conan remote with pre-
 
 
 If you wish to contribute to **conan-toolchains**, follow these steps to clone the repository
-and install the required development dependencies.
+and install the recommended development dependencies.
 
 ```
 git clone git@github.com:conan-io/conan-toolchains.git
 cd conan-toolchains
-# Recommended: Setup your virtual environment before installing dependencies
-pip install pre-commit
 ```
+
+### Contributing recommendation
 
 We use [pre-commit](https://pre-commit.com/) to enforce code style and formatting. To
 activate the pre-commit hooks:
 
 ```
+# Recommended: Setup your virtual environment before installing dependencies
+pip install pre-commit
 pre-commit install
 ```
 
