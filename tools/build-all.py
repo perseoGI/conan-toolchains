@@ -43,9 +43,10 @@ for recipe_dir in sorted(RECIPES.iterdir()):
             "tools.build.cross_building:can_run=True",
         ]
 
-        print(f"::group::{recipe_dir.name}/{version}")
+        print(f"::group::{recipe_name}/{version}", flush=True)
+
         try:
-            print("executing:", " ".join(cmd))
+            print("executing:", " ".join(cmd), flush=True)
             subprocess.run(cmd, check=True)
         finally:
-            print("::endgroup::")
+            print("::endgroup::", flush=True)
