@@ -52,8 +52,8 @@ for recipe_name in get_updated_recipes():
             "--build-require",
             "-pr:h",
             str(recipe_path / ".ci_profile"),
-            "-c",
-            "tools.build.cross_building:can_run=True",
+            "-pr:a",
+            ".ci_base_profile",
         ]
 
         print(f"::group::{recipe_name}/{version}", flush=True)
