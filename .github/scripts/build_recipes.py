@@ -53,7 +53,7 @@ for recipe_name in get_updated_recipes():
             "-pr:h",
             str(recipe_path / ".ci_profile"),
             "-pr:a",
-            ".ci_base_profile",
+            str(Path(__file__).parent / ".ci_base_profile"),
         ]
 
         print(f"::group::{recipe_name}/{version}", flush=True)
