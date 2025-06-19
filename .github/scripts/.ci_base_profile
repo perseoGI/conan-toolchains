@@ -1,3 +1,5 @@
+include(default)
+
 [conf]
 tools.build.cross_building:can_run=True
 
