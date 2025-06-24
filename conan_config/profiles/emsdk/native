@@ -3,6 +3,8 @@ emsdk/4.0.10
 
 [conf]
 tools.build:compiler_executables={'c':'emcc', 'cpp':'em++'}
+# Add native Emscripten toolchain
+# tools.cmake.cmaketoolchain:user_toolchain=["/path/to/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"]
 
 [buildenv]
 CC=emcc
