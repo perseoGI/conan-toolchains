@@ -8,6 +8,3 @@ arch=wasm64
 # wasm64 for now needs to declare INITIAL_MEMORY as the maximum memory
 tools.build:exelinkflags+=['-sMAXIMUM_MEMORY=16GB', '-sINITIAL_MEMORY=16GB', '-sASSERTIONS']
 tools.build:sharedlinkflags+=['-sMAXIMUM_MEMORY=16GB', '-sINITIAL_MEMORY=16GB', '-sASSERTIONS']
-
-#tools.build:exelinkflags+=['-sMIN_NODE_VERSION=221600']
-#tools.build:sharedlinkflags+=['-sMIN_NODE_VERSION=221600']
