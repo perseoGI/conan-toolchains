@@ -5,6 +5,8 @@ build_type=Release
 compiler=emcc
 compiler.cppstd=17
 compiler.libcxx=libc++
+# Choose between both types of multithreading support (or none)
+# compiler.threads=<posix|wasm_workers>
 compiler.version=4.0.10
 os=Emscripten
 
@@ -15,7 +17,7 @@ ninja/[*]
 tools.build:exelinkflags+=['-sALLOW_MEMORY_GROWTH=1']
 tools.build:sharedlinkflags+=['-sALLOW_MEMORY_GROWTH=1']
 
-# Set Ninja as default generator as it is faster and will sove issues on Windows
+# Set Ninja as default generator as it is faster and will avoid Windows issues
 tools.cmake.cmaketoolchain:generator=Ninja
 
 # Distinguish between architectures
