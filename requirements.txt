@@ -1,2 +1,2 @@
-conan @ git+https://github.com/conan-io/conan.git@develop2
+conan>=2.18
 PyYAML
