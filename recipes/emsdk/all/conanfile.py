@@ -134,12 +134,5 @@ class EmSDKConan(ConanFile):
         self.buildenv_info.define_path("RANLIB", self._define_tool_var("emranlib"))
         self.buildenv_info.define_path("STRIP", self._define_tool_var("emstrip"))
 
-        self.cpp_info.builddirs = [
-            os.path.join("bin", "releases", "src"),
-            os.path.join("bin", "upstream", "emscripten", "cmake", "Modules"),
-            os.path.join("bin", "upstream", "emscripten", "cmake", "Modules", "Platform"),
-            os.path.join("bin", "upstream", "emscripten", "system", "lib", "libunwind", "cmake", "Modules"),
-            os.path.join("bin", "upstream", "emscripten", "system", "lib", "libunwind", "cmake"),
-            os.path.join("bin", "upstream", "emscripten", "tests", "cmake", "target_library"),
-            os.path.join("bin", "upstream", "lib", "cmake", "llvm"),
-        ]
+        # Some useful config files: FindOpenGL.cmake, FindOpenAL.cmake, etc
+        self.cpp_info.builddirs = [os.path.join("bin", "upstream", "emscripten", "cmake", "Modules")]

@@ -17,7 +17,7 @@ tailoring recipes as needed. It also supports bleeding-edge or niche toolchains
 that don't belong in the main index, offering maximum flexibility and
 control.
 
-## 🧰 Built-in Profiles
+## 🧰 Reference Profiles
 
 This repository includes several **pre-configured Conan profiles** designed to make toolchain setup effortless:
 

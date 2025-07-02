@@ -1,4 +1,4 @@
 include(./.base)
 
 [tool_requires]
-emsdk/[*]
+emsdk/4.0.10

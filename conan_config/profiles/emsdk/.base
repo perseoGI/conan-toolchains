@@ -1,5 +1,3 @@
-# Note: To use a local emsdk installation use -pr:h <wasm32/wasm64/asmjs> -pr:h native
-
 [settings]
 build_type=Release
 compiler=emcc
@@ -17,7 +15,7 @@ ninja/[*]
 tools.build:exelinkflags+=['-sALLOW_MEMORY_GROWTH=1']
 tools.build:sharedlinkflags+=['-sALLOW_MEMORY_GROWTH=1']
 
-# Set Ninja as default generator as it is faster and will avoid Windows issues
+# Set Ninja as default generator as it will avoid Windows issues
 tools.cmake.cmaketoolchain:generator=Ninja
 
 # Distinguish between architectures
