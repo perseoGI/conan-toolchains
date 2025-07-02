@@ -43,7 +43,7 @@ class CcacheConan(ConanFile):
     def package(self):
         copy(self, "*GPL-*.txt", src=self.build_folder, dst=os.path.join(self.package_folder, "licenses"))
         copy(self, "LICENSE.*", src=self.build_folder, dst=os.path.join(self.package_folder, "licenses"))
-        copy(self, "ccache", src=self.build_folder, dst=os.path.join(self.package_folder, "bin"))
+        copy(self, "ccache*", src=self.build_folder, dst=os.path.join(self.package_folder, "bin"))
         copy(self, AUTOIJECT_CMAKE, src=self.build_folder, dst=self.package_folder)
 
     def package_info(self):
