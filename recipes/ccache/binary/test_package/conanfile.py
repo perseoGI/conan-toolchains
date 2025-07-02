@@ -30,3 +30,5 @@ class TestPackageConan(ConanFile):
 
         if can_run(self):
             self.run("ccache --version", env="conanbuild")
+            self.run("ccache --get-config hash_dir", env="conanbuild")
+            self.run("ccache --get-config base_dir", env="conanbuild")

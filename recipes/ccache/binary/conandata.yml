@@ -1,14 +1,17 @@
 sources:
-  "4.10.2":
+  "4.11.3":
     Linux:
       x86_64:
-        url: "https://github.com/ccache/ccache/releases/download/v4.10.2/ccache-4.10.2-linux-x86_64.tar.xz"
-        sha256: "80cab87bd510eca796467aee8e663c398239e0df1c4800a0b5dff11dca0b4f18"
+        url: "https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-linux-x86_64.tar.xz"
+        sha256: ""
     Macos:
       universal:
-        url: "https://github.com/ccache/ccache/releases/download/v4.10.2/ccache-4.10.2-darwin.tar.gz"
-        sha256: "d90514fff15943a8607e84e3f42d45f823915a92f99984f3fc88202f6295d1e8"
+        url: "https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-darwin.tar.gz"
+        sha256: "6f187a79fc57864d900aff28f9c3f93d020ed7a849be2f2ead6799959ccf30b0"
     Windows:
       x86_64:
-        url: "https://github.com/ccache/ccache/releases/download/v4.10.2/ccache-4.10.2-windows-x86_64.zip"
-        sha256: "6252f081876a9a9f700fae13a5aec5d0d486b28261d7f1f72ac11c7ad9df4da9"
+        url: "https://github.com/ccache/ccache/releases/download/v4.10.2/ccache-4.11.3-windows-x86_64.zip"
+        sha256: ""
+      x86:
+        url: "https://github.com/ccache/ccache/releases/download/v4.11.3/ccache-4.11.3-windows-i686.zip"
+        sha256: ""
