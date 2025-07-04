@@ -1,13 +1,13 @@
-name: Package and publish profile releases
+name: Manually publish profile releases
 
 on:
   workflow_dispatch:
     inputs:
       recipe:
-        description: 'Recipe name to publish profiles for'
+        description: 'Recipe to publish profiles for'
         required: true
       version:
-        description: 'Profiles version to publish'
+        description: 'Version of the packaged profiles'
         required: true
 
 jobs:
@@ -28,7 +28,8 @@ jobs:
       - name: Zip profile folder
         run: |
           mkdir -p dist
-          zip -r "dist/$ZIP_NAME" "conan_config/profiles/$RECIPE"
+          cd conan_config
+          zip -r "dist/$ZIP_NAME" "profiles/$RECIPE"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
