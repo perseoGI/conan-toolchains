@@ -27,9 +27,9 @@ jobs:
 
       - name: Zip profile folder
         run: |
-          cd conan_config
           mkdir -p dist
-          zip -r "dist/$ZIP_NAME" "profiles/$RECIPE"
+          cd conan_config
+          zip -r "../dist/$ZIP_NAME" "profiles/$RECIPE"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
