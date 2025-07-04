@@ -23,13 +23,13 @@ jobs:
         run: |
           echo "RECIPE=${{ github.event.inputs.recipe }}" >> $GITHUB_ENV
           echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
-          echo "ZIP_NAME=toolchain-profiles-${{ github.event.inputs.recipe }}-${{ github.event.inputs.version }}.zip" >> $GITHUB_ENV
+          echo "ZIP_NAME=${{ github.event.inputs.recipe }}-${{ github.event.inputs.version }}-profiles.zip" >> $GITHUB_ENV
 
       - name: Zip profile folder
         run: |
-          cd conan_config
           mkdir -p dist
-          zip -r "dist/$ZIP_NAME" "profiles/$RECIPE"
+          cd conan_config
+          zip -r "../dist/$ZIP_NAME" "profiles/$RECIPE"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
