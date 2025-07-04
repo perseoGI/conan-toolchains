@@ -27,8 +27,8 @@ jobs:
 
       - name: Zip profile folder
         run: |
-          mkdir -p dist
           cd conan_config
+          mkdir -p dist
           zip -r "dist/$ZIP_NAME" "profiles/$RECIPE"
 
       - name: Create GitHub release
