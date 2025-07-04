@@ -1,4 +1,4 @@
-include(./.emsdk_base)
+include(./.base)
 
 [settings]
 arch=wasm

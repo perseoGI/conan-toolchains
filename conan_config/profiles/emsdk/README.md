@@ -73,12 +73,22 @@ compiler.threads=wasm_workers # For Wasm Workers
 
 Conan will automatically inject the necessary linker flags.
 
-### 📂 Profile Overview
+## 📂 Profile Overview
 
 This repository includes the following profiles:
 - `wasm32`: WebAssembly 32-bit target (default).
 - `wasm64`: Experimental 64-bit WebAssembly target (for projects needing >4 GB dynamic memory).
 - `local`: Use your locally installed emsdk instead of the Conan-managed one.
+
+
+⚠️ WASM64 caveats:
+
+The latest node version `emsdk/4.0.10` installs is the `node/22.16.0`, which can not run directly wasm64 binaries.
+Also, it is not valid to compile wasm64 with `-sMIN_NODE_VERSION=221600`, see following error:
+```
+em++: warning: MIN_NODE_VERSION=221600 is not compatible with MEMORY64 (230000 or above required) [-Wcompatibility]
+```
+Thus, to be able to run an `wasm64` binary you will need to download at least `node/23` manually in your system.
 
 🛠️ For the local profile:
 - Ensure `emcc`, `em++`, `emar`, etc. are available in your `PATH`.
@@ -87,7 +97,7 @@ This repository includes the following profiles:
 - Define the arch setting: `wasm`, `wasm64`, or the mostly deprecated `asm.js`.
 
 
-### ▶️ Usage
+## ▶️ Usage
 
 After installing the profiles (TBD), you can build your project like this:
 

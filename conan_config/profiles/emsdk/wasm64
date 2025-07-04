@@ -1,4 +1,4 @@
-include(./.emsdk_base)
+include(./.base)
 
 [settings]
 arch=wasm64
@@ -8,3 +8,5 @@ arch=wasm64
 # wasm64 for now needs to declare INITIAL_MEMORY as the maximum memory
 tools.build:exelinkflags+=['-sMAXIMUM_MEMORY=16GB', '-sINITIAL_MEMORY=16GB', '-sASSERTIONS']
 tools.build:sharedlinkflags+=['-sMAXIMUM_MEMORY=16GB', '-sINITIAL_MEMORY=16GB', '-sASSERTIONS']
+
+# Node version from emsdk/4.0.10 can not run a wasm64 binary. See more details in README

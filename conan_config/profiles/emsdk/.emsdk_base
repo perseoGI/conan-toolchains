@@ -1,4 +1,0 @@
-include(./.base)
-
-[tool_requires]
-emsdk/4.0.10

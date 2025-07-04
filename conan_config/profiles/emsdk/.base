@@ -10,6 +10,7 @@ os=Emscripten
 
 [tool_requires]
 ninja/[*]
+emsdk/4.0.10
 
 [conf]
 tools.build:exelinkflags+=['-sALLOW_MEMORY_GROWTH=1']

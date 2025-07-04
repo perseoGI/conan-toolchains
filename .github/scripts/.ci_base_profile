@@ -1,8 +1,6 @@
 include(default)
 
 [conf]
-tools.build.cross_building:can_run=True
-
 # Verbosity
 tools.build:verbosity=verbose
 tools.compilation:verbosity=verbose

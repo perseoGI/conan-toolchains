@@ -6,6 +6,8 @@ import subprocess
 import yaml
 from collections import defaultdict
 
+BASE_PATH = Path(__file__).parent
+
 
 def get_updated_recipes():
     updated_paths = os.getenv("BUILD_RECIPES", "").split(" ")
@@ -47,19 +49,28 @@ for recipe_name in get_updated_recipes():
             version,
             "--build",
             "missing",
-            "--build-test",
-            f"{recipe_name}/*",
-            "--build-require",
-            "-pr:h",
-            str(recipe_path / ".ci_profile"),
             "-pr:a",
-            str(Path(__file__).parent / ".ci_base_profile"),
+            str(BASE_PATH / ".ci_base_profile"),
         ]
+
+        with open(BASE_PATH / "profiles.json", "r") as f:
+            profile_list = json.load(f).get(recipe_name)
 
         print(f"::group::{recipe_name}/{version}", flush=True)
 
         try:
             print("executing:", " ".join(cmd), flush=True)
             subprocess.run(cmd, check=True)
+            for profile in profile_list.get("profiles", []):
+                example_cmd = [
+                    "conan",
+                    "test",
+                    str(recipe_path / "test_example"),
+                    f"{recipe_name}/{version}",
+                    "--profile",
+                    profile,
+                ]
+                print("executing:", " ".join(example_cmd), flush=True)
+                subprocess.run(example_cmd, check=True)
         finally:
             print("::endgroup::", flush=True)
