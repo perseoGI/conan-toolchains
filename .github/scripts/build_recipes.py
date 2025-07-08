@@ -61,7 +61,7 @@ for recipe_name in get_updated_recipes():
         try:
             print("executing:", " ".join(cmd), flush=True)
             subprocess.run(cmd, check=True)
-            for profile in profile_list.get(version, {}).get("profiles", []):
+            for profile in profile_list.get("profiles", []):
                 example_cmd = [
                     "conan",
                     "test",
