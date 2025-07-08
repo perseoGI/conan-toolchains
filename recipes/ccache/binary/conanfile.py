@@ -56,3 +56,6 @@ class CcacheConan(ConanFile):
         base_dir = self.conf.get("user.ccache:base_dir", default=str(Path.home()), check_type=str)
         self.buildenv_info.define("CCACHE_BASEDIR", base_dir)
         self.buildenv_info.define("CCACHE_NOHASHDIR", "1")
+
+        self.output.warning("ccache recipe can autoinject itself into CMake projects but you need to define CC/CXX "
+                            "environment variables to use it in other build systems such as Meson, Autotools, Premake, etc.")
